@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lab 6 - Component Approaches</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main>
+    <!-- title and page description -->
+    <header>
+      <h1>Chat Component</h1>
+      <p>Prototype + Three Approaches to Component-Based Thinking</p>
+    </header>
+
+    <!-- card grid -->
+    <section>
+      <!-- individual card -->
+      <article>
+        <!-- card tag/badge -->
+        <p class="badge badge-prototype">Prototype</p>
+        <!-- card title -->
+        <h2>Pure HTML & CSS</h2>
+        <!-- card description -->
+        <p class="card-desc">
+          A static mockup using only HTML and CSS to work out the interface design.
+        </p>
+        <!-- card features-->
+        <ul>
+          <li>No dependencies</li>
+          <li>Always accessible</li>
+          <li>Simple to understand</li>
+          <li>No interactivity</li>
+        </ul>
+        <!-- link to demo -->
+        <p>
+          <a href="chat-prototype-html-css/">
+            View Demo →
+          </a>
+        </p>
+      </article>
+
+      <article>
+        <p class="badge badge-approach">Approach 1</p>
+        <h2>DOM Manipulation</h2>
+        <p class="card-desc">
+          Interactive chat using vanilla JavaScript and standard DOM methods.
+        </p>
+        <ul>
+          <li>Full interactivity</li>
+          <li>Eliza-style bot</li>
+          <li>Standard JavaScript</li>
+          <li>No encapsulation</li>
+        </ul>
+        <p>
+          <a href="chat-dom/">
+            View Demo →
+          </a>
+        </p>
+      </article>
+
+      <article>
+        <p class="badge badge-approach">Approach 2</p>
+        <h2>Progressive Enhancement</h2>
+        <p class="card-desc">
+          Custom element that enhances existing HTML markup with JavaScript.
+        </p>
+        <ul>
+          <li>Graceful degradation</li>
+          <li>Semantic base HTML</li>
+          <li>Web Components API</li>
+          <li>Global styles</li>
+        </ul>
+        <p>
+          <a href="chat-webcomponent-pe/">
+            View Demo →
+          </a>
+        </p>
+      </article>
+
+      <article>
+        <p class="badge badge-approach">Approach 3</p>
+        <h2>Web Component</h2>
+        <p class="card-desc">
+          Fully encapsulated custom element with Shadow DOM and internal styles.
+        </p>
+        <ul>
+          <li>Complete encapsulation</li>
+          <li>Shadow DOM</li>
+          <li>Self-contained</li>
+          <li>Highly reusable</li>
+        </ul>
+        <p>
+          <a href="chat-webcomponent-gd/">
+            View Demo →
+          </a>
+        </p>
+      </article>
+    </section>
+
+    <!-- class info separated by line -->
+    <hr>
+    <footer>
+      <small>COMP 305 Fall 2025 - Prof Powell</small>
+    </footer>
+  </main>
+</body>
+</html>
