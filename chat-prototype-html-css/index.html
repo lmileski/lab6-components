@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>chat prototype (static)</title>
+	<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+	<main>
+		<header>
+			<h1>Chat Assistant</h1>
+			<p>Prototype: Pure HTML/CSS (Static)</p>
+		</header>
+
+		<section>
+			<!-- list of stacked messages -->
+			<ul>
+				<!-- bot gretting message bubble -->
+				<li class="bot">
+					<p class="bubble">Hello! I'm here to chat with you. How can I help you today?</p>
+					<time datetime="2025-10-16T10:00">10:00</time>
+				</li>
+
+				<!-- user's first reply -->
+				<li class="user">
+					<p class="bubble">Hi there! What can you do?</p>
+					<time datetime="2025-10-16T10:01">10:01</time>
+				</li>
+
+				<!-- another bot message -->
+				<li class="bot">
+					<p class="bubble">I can chat with you about various topics. Try asking me a question or just say hello!</p>
+					<time datetime="2025-10-16T10:02">10:02</time>
+				</li>
+
+				<!-- another user reply -->
+				<li class="user">
+					<p class="bubble">How does this work?</p>
+					<time datetime="2025-10-16T10:03">10:03</time>
+				</li>
+
+				<!-- final bot message -->
+				<li class="bot">
+					<p class="bubble">This version is just a visual demo. The input below is disabled.</p>
+					<time datetime="2025-10-16T10:04">10:04</time>
+				</li>
+			</ul>
+		</section>
+
+		<!-- bottom input bar that looks real but does nothing -->
+		<form>
+			<label for="fake-input" class="visually-hidden">type a message</label>
+			<input id="fake-input" type="text" placeholder="Type a message..." disabled>
+			<button type="button" disabled>Send</button>
+		</form>
+
+		<!-- footer note saying this is a static demo -->
+		<aside>
+			<small>This is a static HTML/CSS demonstration. The input is disabled. See other approaches for interactive versions.</small>
+		</aside>
+	</main>
+</body>
+</html>
