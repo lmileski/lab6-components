@@ -1,65 +1,61 @@
 import { getBotResponse } from "../eliza.js";
 
+/**
+ * returns the current time
+ * @returns {string}
+ */
+function timeNow() {
+  return new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+}
+
 // main chat ui elements
 const messagesList = document.getElementById("messages");
 const form = document.getElementById("chat-form");
 const input = document.getElementById("chat-input");
 const scrollArea = document.querySelector("section");
 
-function timeNow() {
-	return new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
-}
-
-// create a message row to add to list
+/**
+ * create and append a single chat row
+ * @param {string} text - message contents as plain text
+ * @param {"bot"|"user"} role - who said it so we can style the bubble
+ */
 function addMessage(text, role) {
-	const li = document.createElement("li");
-	li.className = role;
+  const li = document.createElement("li");
+  li.className = role;
 
-	// make the message bubble
-	const p = document.createElement("p");
-	p.className = "bubble";
-	p.textContent = text;
+  const p = document.createElement("p");
+  p.className = "bubble";
+  p.textContent = text;
 
-	// make a tiny timestamp
-	const t = document.createElement("time");
-	t.dateTime = new Date().toISOString();
-	t.textContent = timeNow();
+  const t = document.createElement("time");
+  t.dateTime = new Date().toISOString();
+  t.textContent = timeNow();
 
-	// attach the bubble and time to the row
-	li.appendChild(p);
-	li.appendChild(t);
+  li.appendChild(p);
+  li.appendChild(t);
+  messagesList.appendChild(li);
 
-	// drop the row at the bottom of the list
-	messagesList.appendChild(li);
-
-	// keep the newest message visible
-	scrollArea.scrollTop = scrollArea.scrollHeight;
+  // keep newest thing in view
+  scrollArea.scrollTop = scrollArea.scrollHeight;
 }
 
-// show a small greeting so the chat doesn't start empty
+// greetings
 addMessage("Hello! I'm here to chat with you. How can I help you today?", "bot");
+input.focus();
 
-// when the user presses send or hits enter
+// send on click or enter (submit covers both)
 form.addEventListener("submit", function (e) {
-	// stop the page from reloading as seen in class
-	e.preventDefault();
+  e.preventDefault();
 
-	// read the box and trim spaces
-	const text = input.value.trim();
+  const text = input.value.trim();
+  if (!text) return;
 
-	// do nothing if it's empty
-	if (!text) return;
+  addMessage(text, "user");
 
-	// add the user's line
-	addMessage(text, "user");
+  input.value = "";
+  input.focus();
 
-	// clear and focus for the next line
-	input.value = "";
-	input.focus();
-
-	// ask eliza for a reply using the provided module
-	const reply = getBotResponse(text);
-
-	// add the bot's line
-	addMessage(reply, "bot");
+  // ask eliza for a reply
+  const reply = getBotResponse(text);
+  addMessage(reply, "bot");
 });

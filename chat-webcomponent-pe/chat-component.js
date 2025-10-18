@@ -1,72 +1,78 @@
-// uses eliza module one folder up
+// uses the provided eliza module one folder up
 import { getBotResponse } from "../eliza.js";
 
+/**
+ * simple custom element that enhances existing html.
+ */
 class SimpleChat extends HTMLElement {
-	// run when the element appears on the page
-	connectedCallback() {
-		this.scrollArea = this.querySelector("section");
-		this.messagesList = this.querySelector(".messages");
-		this.form = this.querySelector(".input-area");
-		this.input = this.querySelector("#pe-chat-input");
-		this.button = this.form ? this.form.querySelector("button") : null;
+  /**
+   * returns the current time
+   * @returns {string}
+   */
+  timeNow() {
+    return new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+  }
 
-		// graceful degradation if something is missing
-		if (!this.scrollArea || !this.messagesList || !this.form || !this.input || !this.button) return;
+  /**
+   * create and append a single chat row
+   * @param {string} text - message contents
+   * @param {"bot"|"user"} role - who said something
+   */
+  addMessage(text, role) {
+    const li = document.createElement("li");
+    li.className = role;
 
-		this.addMessage("Hello! I'm here to chat with you. How can I help you today?", "bot");
+    const p = document.createElement("p");
+    p.className = "bubble";
+    p.textContent = text;
 
-		// focus input area
-		this.input.focus();
+    const tm = document.createElement("time");
+    tm.dateTime = new Date().toISOString();
+    tm.textContent = this.timeNow();
 
-		this.form.addEventListener("submit", (e) => {
-			// prevent the page from reloading as seen in class
-			e.preventDefault();
+    li.appendChild(p);
+    li.appendChild(tm);
+    this.messagesList.appendChild(li);
 
-			const text = this.input.value.trim();
-			if (!text) return; // ignore empty messages
+    // keep the bottom in view
+    this.scrollArea.scrollTop = this.scrollArea.scrollHeight;
+  }
 
-			// add the user's message to the list
-			this.addMessage(text, "user");
+  // run once the element is on the page
+  connectedCallback() {
+    // wire up to simple-chat
+    this.scrollArea   = this.querySelector("section");
+    this.messagesList = this.querySelector(".messages");
+    this.form         = this.querySelector(".input-area");
+    this.input        = this.querySelector("#pe-chat-input");
+    this.button       = this.form ? this.form.querySelector("button") : null;
 
-			// clear box and focus again
-			this.input.value = "";
-			this.input.focus();
+    // anything missing?
+    if (!this.scrollArea || !this.messagesList || !this.form || !this.input || !this.button) return;
 
-			// ask eliza for a reply
-			const reply = getBotResponse(text);
-			this.addMessage(reply, "bot");
-		});
-	}
+    // greetings
+    this.addMessage("Hello! I'm here to chat with you. How can I help you today?", "bot");
 
-	timeNow() {
-		return new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
-	}
+    // focus the box
+    this.input.focus();
 
-	addMessage(text, role) {
-		const li = document.createElement("li");
-		li.className = role; // bot or user
+    // submit sends a message
+    this.form.addEventListener("submit", (e) => {
+      e.preventDefault();
 
-		// make the bubble
-		const p = document.createElement("p");
-		p.className = "bubble";
-		p.textContent = text;
+      const text = this.input.value.trim();
+      if (!text) return;
 
-		// make the time
-		const time = document.createElement("time");
-		time.dateTime = new Date().toISOString();
-		time.textContent = this.timeNow();
+      this.addMessage(text, "user");
 
-		// put everything together
-		li.appendChild(p);
-		li.appendChild(time);
+      this.input.value = "";
+      this.input.focus();
 
-		// add to the list
-		this.messagesList.appendChild(li);
-
-		// keep the newest message in view
-		this.scrollArea.scrollTop = this.scrollArea.scrollHeight;
-	}
+      const reply = getBotResponse(text);
+      this.addMessage(reply, "bot");
+    });
+  }
 }
 
-// register the element
+// register
 customElements.define("simple-chat", SimpleChat);

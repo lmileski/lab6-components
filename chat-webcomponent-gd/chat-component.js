@@ -76,7 +76,7 @@ class ChatInterface extends HTMLElement {
           flex-direction: column;
           overflow: hidden;
           border: 0;
-          font-family: Helvetica, Arial, sans-serif;
+          font-family: Helvetica;
         }
         header {
           background: #4f8ad6;
