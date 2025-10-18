@@ -37,7 +37,7 @@ function addMessage(text, role) {
 }
 
 // show a small greeting so the chat doesn't start empty
-addMessage("Hello! I'm here to chat. Ask me something and I'll try to respond.", "bot");
+addMessage("Hello! I'm here to chat with you. How can I help you today?", "bot");
 
 // when the user presses send or hits enter
 form.addEventListener("submit", function (e) {

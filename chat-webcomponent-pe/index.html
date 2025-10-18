@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>chat prototype (progressive enhancement)</title>
+	<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+	<main>
+		<header>
+			<h1>Chat Assistant</h1>
+			<p>Approach 2</p>
+		</header>
+
+		<simple-chat>
+			<section>
+				<ul class="messages"></ul>
+			</section>
+
+			<form class="input-area">
+				<label for="pe-chat-input" class="visually-hidden">type a message</label>
+				<input id="pe-chat-input" type="text" placeholder="Type a message...">
+				<button type="submit">Send</button>
+			</form>
+		</simple-chat>
+	</main>
+	<script type="module" src="chat-component.js"></script>
+</body>
+</html>
