@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>chat prototype (dom)</title>
+	<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+	<main>
+		<header>
+			<h1>Chat Assistant</h1>
+			<p>Approach 1</p>
+		</header>
+
+		<section>
+			<ul id="messages"></ul>
+		</section>
+
+		<form id="chat-form">
+			<label for="chat-input" class="visually-hidden">type a message</label>
+			<input id="chat-input" type="text" placeholder="Type a message...">
+			<button id="send-btn" type="submit">Send</button>
+		</form>
+	</main>
+
+	<script type="module" src="script.js"></script>
+</body>
+</html>

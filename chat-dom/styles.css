@@ -5,7 +5,7 @@ html, body {
 
 body {
 	font-family: Helvetica;
-	min-height: 100vh; /* allow page to scroll */
+	min-height: 100vh;
 	display: flex;
 	align-items: flex-start;
 	justify-content: center;
@@ -57,7 +57,7 @@ section {
 	overscroll-behavior: contain;
 }
 
-/* stack messages with a little room */
+/* list spacing */
 ul {
 	list-style: none;
 	margin: 0;
@@ -67,7 +67,7 @@ ul {
 	gap: 0.875rem;
 }
 
-/* each message row */
+/* message alignment */
 li {
 	display: flex;
 	align-items: flex-end;
@@ -75,7 +75,6 @@ li {
 	max-width: 80%;
 }
 
-/* aligning user and bot messages appropriately */
 li.bot {
 	justify-content: flex-start;
 }
@@ -98,7 +97,6 @@ li.user {
 	line-height: 1.4;
 }
 
-/* bot and user bubbles must have different cornering and colors */
 li.bot .bubble {
 	border-bottom-left-radius: 3px;
 }
@@ -110,14 +108,13 @@ li.user .bubble {
 	border-bottom-right-radius: 3px;
 }
 
-
-/* adding optional timestamp */
+/* timestamp */
 time {
 	font-size: 0.6875rem;
 	color: #9aa0a6;
 }
 
-/* input text area */
+/* input area */
 form {
 	display: flex;
 	align-items: center;
@@ -127,7 +124,7 @@ form {
 	background: #ffffff;
 }
 
-/* making input disabled since no JS :( */
+/* message input */
 input[type="text"] {
 	flex: 1;
 	padding: 0.875rem 1rem;
@@ -143,36 +140,33 @@ input[type="text"]::placeholder {
 	color: #a3a9b3;
 }
 
-/* send button is disabled too :( */
+/* send button now blue */
 button {
 	padding: 0.75rem 1.125rem;
-	border: 1px solid #e1e5ea;
+	border: none;
 	border-radius: 10000px;
-	background: #f0f2f5;
+	background: #4f8ad6;
 	font-size: 0.875rem;
 	font-weight: 600;
-	color: #8a9099;
-	box-shadow: 0 0.0625rem 0.0625rem rgba(17, 24, 39, 0.03);
+	color: #ffffff;
+	cursor: pointer;
+	transition: background 0.2s ease;
+}
+
+button:hover {
+	background: #3c6cab;
+}
+
+button:active {
+	background: #345c93;
 }
 
 button[disabled] {
-	opacity: 1;
+	opacity: 0.8;
 	cursor: not-allowed;
 }
 
-/* banner saying interactivity is disabled */
-aside {
-	background: #fde68a;
-	border-top: 1px solid #facc15;
-	padding: 0.6rem 0.875rem;
-}
-
-aside small {
-	display: block;
-	font-size: 0.75rem;
-	color: #6b6f76;
-}
-
+/* visually hidden helper text */
 .visually-hidden {
 	position: absolute;
 	width: 1px;
@@ -185,7 +179,7 @@ aside small {
 	border: 0;
 }
 
-/* adding scrollbar */
+/* custom scrollbar */
 section::-webkit-scrollbar {
 	width: 0.625rem;
 }
